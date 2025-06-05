@@ -5,21 +5,181 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Memory Match Game</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* --- Hero Banner --- */
+    .hero {
+      background: url('image/hero-bg.jpg') center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* --- Button --- */
+    .button {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: #4CAF50;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .button:hover {
+      background: #43a047;
+    }
+
+    /* --- Header & Nav --- */
+    header {
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 15px;
+    }
+    header h1 {
+      font-size: 1.8rem;
+      color: #333;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      color: #333;
+      text-decoration: none;
+      padding: 6px 10px;
+      transition: background 0.3s, color 0.3s;
+      border-radius: 4px;
+    }
+    nav a:hover,
+    nav a.active {
+      background: #4CAF50;
+      color: #fff;
+    }
+
+    /* --- Main Section (for smaller screens fallback) --- */
+    main > section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    main > section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    main > section p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    /* --- Utility Container --- */
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* --- Responsive Nav Toggle --- */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 100%;
+        right: 15px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      }
+      .nav-toggle {
+        display: block;
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      nav.open ul {
+        display: flex;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Memory Match Game</h1>
+  <div class="container">
+    <h1>Memory Match</h1>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
     <nav>
       <ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
         <li><a href="game.html">Game</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-  </header>
+  </div>
+</header>
+<script>
+  // menu toggle
+  document.querySelector('.nav-toggle').addEventListener('click', () => {
+    document.querySelector('nav').classList.toggle('open');
+  });
+</script>
 
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Train Your Brain with Memory Match!</h2>
+      <p>Challenge yourself to find all the matching cards in as few moves as possible. Fun for all ages.</p>
+      <a href="game.html" class="button">Play Now</a>
+    </div>
+  </section>
+
+  <!-- Fallback content for very small screens -->
   <main>
     <section>
       <h2>Welcome to Memory Match!</h2>
@@ -29,7 +189,7 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 Memory Match Game</p>
+    <p>&copy; 2025 Memory Match Game &mdash; All Rights Reserved</p>
   </footer>
 
   <script src="script.js"></script>

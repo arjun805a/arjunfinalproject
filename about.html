@@ -7,48 +7,61 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>About This Game</h1>
+ <header>
+  <div class="container">
+    <h1>About us</h1>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
     <nav>
       <ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
         <li><a href="game.html">Game</a></li>
-        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-  </header>
+  </div>
+</header>
+<script>
+  // menu toggle
+  document.querySelector('.nav-toggle').addEventListener('click', () => {
+    document.querySelector('nav').classList.toggle('open');
+  });
+</script>
+
 
   <main>
     <section>
       <h2>What Is the Memory Match Game?</h2>
       <p>
-        This is a simple and fun browser-based memory game. Your task is to flip two cards at a time and try to match pairs.
+        This is a simple and fun browser-based memory game. Your task is to flip two cards at a time 
+        and try to match pairs. The goal is to find all matching pairs with the fewest moves possible.
       </p>
     </section>
 
-    <section>
-      <h2>Why I Made This</h2>
-      <p>
-        I created this project for my final web development assignment. The goal was to build something interactive, responsive, and enjoyable to use—so I chose a classic card matching game.
-      </p>
-    </section>
+   
 
     <section>
       <h2>How to Play</h2>
       <ul>
         <li>Click on any card to flip it over.</li>
         <li>Try to find a matching emoji on another card.</li>
-        <li>Match all the pairs to win!</li>
+        <li>If the cards match, they stay flipped.</li>
+        <li>If not, they flip back over  so remember them!</li>
+        <li>Match all the pairs to win the game.</li>
         <li>The fewer moves you make, the better your memory!</li>
       </ul>
     </section>
 
     <section>
       <h2>Fun Fact</h2>
-      <p id="fun-fact">Can you guess how many combinations are possible with 8 pairs? <button id="reveal-btn">Reveal</button></p>
-      <p id="fact-answer" style="display:none;">There are <strong>16! / (2!^8)</strong> = 10,395,360 combinations!</p>
+      <p id="fun-fact">
+        Can you guess how many combinations are possible with 8 pairs? 
+        <button id="reveal-btn">Reveal</button>
+      </p>
+      <p id="fact-answer" style="display:none;">
+        There are <strong>16! / (2!<sup>8</sup>)</strong> = <strong>10,395,360</strong> combinations!
+      </p>
     </section>
   </main>
 

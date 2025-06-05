@@ -1,101 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Gallery</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery - Fruits</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    .filter-buttons {
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+    }
+
+    header, footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
       display: flex;
       justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
+      gap: 20px;
     }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+
+    nav a.active {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    .filter-buttons {
+      text-align: center;
+      margin: 20px 0;
+    }
+
     .filter-buttons button {
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 6px;
+      padding: 10px 20px;
       background-color: #4CAF50;
       color: white;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
-    .filter-buttons button:hover {
-      background-color: #45a049;
-    }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      padding: 0 2rem;
+      gap: 20px;
+      padding: 20px;
     }
-    .card {
-      background-color: white;
-      padding: 1rem;
+
+    .flip-card {
+      background-color: transparent;
+      width: 100%;
+      height: 250px;
+      perspective: 1000px;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
       text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner,
+    .flip-card:active .flip-card-inner,
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 10px;
+      background: white;
     }
-    .card img {
-      max-width: 100%;
-      height: 150px;
+
+    .flip-card-front img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border-radius: 6px;
+      border-radius: 10px;
     }
-    .card h3 {
-      margin-top: 1rem;
+
+    .flip-card-back {
+      transform: rotateY(180deg);
+      background-color: #fff;
+    }
+
+    .card-title {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .card-text {
+      font-size: 0.95rem;
+      color: #333;
+      margin-top: 5px;
+      padding: 0 10px;
+    }
+
+    /* Optional center alignment for "Me" card */
+    .centered {
+      grid-column: 1 / -1;
+      max-width: 250px;
+      margin: 0 auto;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Game Gallery</h1>
+
+ <header>
+  <div class="container">
+    <h1>Memory Match</h1>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
     <nav>
       <ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
         <li><a href="game.html">Game</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-  </header>
+  </div>
+</header>
+<script>
+  // menu toggle
+  document.querySelector('.nav-toggle').addEventListener('click', () => {
+    document.querySelector('nav').classList.toggle('open');
+  });
+</script>
+
 
   <main>
-    <section class="filter-buttons">
-      <button onclick="filterItems('all')">All</button>
-      <button onclick="filterItems('fruit')">Fruits</button>
-      <button onclick="filterItems('level')">Levels</button>
-      <button onclick="filterItems('item')">Items</button>
-    </section>
+    <div class="filter-buttons">
+      <button>Fruits</button>
+    </div>
 
-    <section class="gallery" id="gallery">
-      <div class="card fruit">
-        <img src="images/apple.jpg" alt="Apple">
-        <h3>Apple</h3>
+    <section class="gallery">
+
+      <!-- Card Template -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="image/apple.png" alt="Apple">
+          </div>
+          <div class="flip-card-back">
+            <div class="card-title">Apple</div>
+            <div class="card-text">Apples are rich in fiber and antioxidants.</div>
+          </div>
+        </div>
       </div>
-      <div class="card fruit">
-        <img src="images/banana.jpg" alt="Banana">
-        <h3>Banana</h3>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="image/banana.png" alt="Banana">
+          </div>
+          <div class="flip-card-back">
+            <div class="card-title">Banana</div>
+            <div class="card-text">Bananas are a great source of potassium.</div>
+          </div>
+        </div>
       </div>
-      <div class="card level">
-        <img src="images/forest.jpg" alt="Forest Level">
-        <h3>Forest Level</h3>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="image/grape.png"alt="Grape">
+          </div>
+          <div class="flip-card-back">
+            <div class="card-title">Grape</div>
+            <div class="card-text">Grapes contain antioxidants called polyphenols.</div>
+          </div>
+        </div>
       </div>
-      <div class="card level">
-        <img src="images/dungeon.jpg" alt="Dungeon">
-        <h3>Dungeon</h3>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="image/kiwi.png" alt="KIWI">
+          </div>
+          <div class="flip-card-back">
+            <div class="card-title">Orange</div>
+            <div class="card-text">Oranges are famous for their vitamin C content.</div>
+          </div>
+        </div>
       </div>
-      <div class="card item">
-        <img src="images/sword.jpg" alt="Sword">
-        <h3>Sword</h3>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="image/watermelon.png" alt="Watermelon">
+          </div>
+          <div class="flip-card-back">
+            <div class="card-title">Watermelon</div>
+            <div class="card-text">Watermelons are 92% water — super refreshing!</div>
+          </div>
+        </div>
       </div>
-      <div class="card item">
-        <img src="images/shield.jpg" alt="Shield">
-        <h3>Shield</h3>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="image/ChatGPT Image Jun 15, 2025, 03_59_49 PM.png" alt="Pineapple">
+          </div>
+          <div class="flip-card-back">
+            <div class="card-title">Pineapple</div>
+            <div class="card-text">Pineapples have an enzyme that helps digestion.</div>
+          </div>
+        </div>
       </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="image/strawberry.png" alt="Strawberry">
+          </div>
+          <div class="flip-card-back">
+            <div class="card-title">Strawberry</div>
+            <div class="card-text">Strawberries are rich in vitamin C.</div>
+          </div>
+        </div>
+      </div>
+     
+
+      <!-- Your Photo Card Centered -->
+      <div class="flip-card centered">
+         <div class="filter-buttons">
+          <button>DEVELOPER</button>
+      </div>
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="image/me.jpg" alt="Me">
+          </div>
+          <div class="flip-card-back">
+            <div class="card-title">Me</div>
+            <div class="card-text">DEVELOPER OF THIS WEBSITE</div>
+          </div>
+        </div>
+      </div>
+
     </section>
   </main>
 
@@ -103,17 +269,5 @@
     &copy; 2025 Memory Match Game
   </footer>
 
-  <script>
-    function filterItems(category) {
-      const cards = document.querySelectorAll('.gallery .card');
-      cards.forEach(card => {
-        if (category === 'all') {
-          card.style.display = 'block';
-        } else {
-          card.style.display = card.classList.contains(category) ? 'block' : 'none';
-        }
-      });
-    }
-  </script>
 </body>
 </html>

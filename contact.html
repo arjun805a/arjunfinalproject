@@ -54,17 +54,27 @@
 </head>
 <body>
   <header>
-    <h1>Contact Us</h1>
+  <div class="container">
+    <h1>COntact us</h1>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
     <nav>
       <ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
         <li><a href="game.html">Game</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-  </header>
+  </div>
+</header>
+<script>
+  // menu toggle
+  document.querySelector('.nav-toggle').addEventListener('click', () => {
+    document.querySelector('nav').classList.toggle('open');
+  });
+</script>
+>
 
   <main>
     <div class="form-container">

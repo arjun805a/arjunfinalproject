@@ -1,143 +1,363 @@
-/* === Global Styles === */
-* {
+/* ==========================================================================
+   Reset & Base
+   ========================================================================== */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #f4f4f4;
   color: #333;
   line-height: 1.6;
-  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Header and Footer */
-header, footer {
-  background-color: #333;
-  color: white;
-  padding: 1rem;
-  text-align: center;
+.page-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-footer {
-  font-size: 0.9rem;
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-/* Navigation */
+/* ==========================================================================
+   Header & Navigation (Colorful)
+   ========================================================================== */
+header {
+  background: linear-gradient(45deg, #ff6a00, #ee0979, #8e44ad);
+  color: #fff;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header h1 {
+  font-size: 1.8rem;
+}
+
+nav {
+  position: relative;
+}
+
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 0;
-  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
 }
 
-nav ul li a {
-  color: white;
+nav a {
+  color: #fff;
   text-decoration: none;
   font-weight: 600;
   padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.2);
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
-nav ul li a:hover,
-nav ul li a.active {
-  background-color: #4CAF50;
-  text-decoration: none;
+nav a:hover,
+nav a.active {
+  background: #fff;
+  color: #333;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
-/* Main container */
-main {
-  max-width: 960px;
-  margin: 2rem auto;
-  padding: 1rem;
+/* Mobile menu toggle */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background: linear-gradient(45deg, #ff6a00, #ee0979, #8e44ad);
+    position: absolute;
+    right: 0;
+    top: 100%;
+    width: 200px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border-radius: 0 0 8px 8px;
+  }
+  nav.open ul {
+    display: flex;
+  }
+  nav ul li {
+    text-align: right;
+    margin: 0.5rem 1rem;
+  }
+}
+
+/* ==========================================================================
+   Hero (on index.html)
+   ========================================================================== */
+.hero {
+  background: url('image/hero-bg.jpg') center/cover no-repeat;
+  position: relative;
+  color: #fff;
   text-align: center;
+  padding: 100px 20px;
 }
 
-/* Buttons */
-.button, button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 0.7rem 1.5rem;
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.button,
+button {
+  display: inline-block;
+  background-color: #4caf50;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 600;
   text-decoration: none;
-  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.button:hover, button:hover {
-  background-color: #45a049;
+.button:hover,
+button:hover {
+  background-color: #43a047;
   transform: scale(1.05);
 }
 
-/* Gallery Styles */
-.gallery-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
+/* ==========================================================================
+   Main Content
+   ========================================================================== */
+main {
+  flex: 1;
+  padding: 2rem 0;
+  text-align: center;
 }
 
-.gallery-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
+/* ==========================================================================
+   Gallery Section (gallery.html)
+   ========================================================================== */
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.filter-buttons button {
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.gallery-container {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  padding: 0 1rem;
+}
+
+.gallery-item {
+  background: #fff;
+  border-radius: 12px;
   overflow: hidden;
-  background-color: #fff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
 }
 
-.gallery-card img {
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.gallery-item img {
   width: 100%;
-  height: 120px;
+  height: 140px;
   object-fit: cover;
 }
 
-.gallery-card h3 {
+.gallery-item h3 {
   padding: 0.5rem;
+  font-size: 1.1rem;
 }
 
-.gallery-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* Forms */
-.form-container {
-  background-color: #fafafa;
-  padding: 1.5rem;
-  border-radius: 10px;
-  max-width: 500px;
+/* ==========================================================================
+   Game Section (game.html)
+   ========================================================================== */
+.game-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  max-width: 600px;
   margin: 2rem auto;
+}
+
+.game-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.game-card:hover {
+  background-color: #e0f7fa;
+}
+
+.game-card::after {
+  content: attr(data-fact);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.95);
+  padding: 0.5rem;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #2e7d32;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+
+.game-card:hover::after {
+  transform: translateY(0);
+}
+
+/* Flip cards within gallery */
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  padding: 1rem;
+}
+
+/* ==========================================================================
+   Forms (contact.html)
+   ========================================================================== */
+.form-container {
+  background: #fafafa;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  max-width: 500px;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   text-align: left;
 }
 
-label {
+.form-container label {
   display: block;
   margin-top: 1rem;
   font-weight: 600;
 }
 
-input, textarea {
+.form-container input,
+.form-container textarea {
   width: 100%;
   padding: 0.5rem;
   margin-top: 0.3rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s;
 }
 
-input:focus, textarea:focus {
-  border-color: #4CAF50;
+.form-container input:focus,
+.form-container textarea:focus {
+  border-color: #4caf50;
   outline: none;
 }
 
@@ -154,93 +374,25 @@ input:focus, textarea:focus {
   text-align: center;
 }
 
-/* Game Area */
-.game-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 12px;
-  justify-content: center;
-  margin-top: 2rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
 }
 
-.card {
-  background-color: #ddd;
-  height: 80px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5rem;
-  cursor: pointer;
-  user-select: none;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  perspective: 1000px;
-  position: relative;
-}
-
-.card.flipped {
-  background-color: #4CAF50;
-  color: white;
-  transform: rotateY(180deg);
-}
-
-/* Responsive Styles */
+/* ==========================================================================
+   Responsive Tweaks
+   ========================================================================== */
 @media (max-width: 600px) {
-  nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .gallery-card img {
+  .gallery-item img {
     height: 100px;
   }
 
-  main {
-    padding: 1rem;
-  }
-}
-/* === Gallery Section === */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem;
-}
-
-.gallery-item {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  padding: 1rem;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.gallery-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-}
-
-.gallery-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-}
-
-.filter-buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-@media (max-width: 600px) {
-  .gallery-grid {
-    grid-template-columns: 1fr;
+  .game-container {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   }
 }
