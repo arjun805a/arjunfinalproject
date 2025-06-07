@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - Memory Match Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .form-container {
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9rem;
+    }
+
+    .success {
+      color: green;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Contact Us</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="form-container">
+      <h2>Send Us Feedback</h2>
+      <form id="contactForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Your email" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" rows="4" placeholder="Your message..." required></textarea>
+
+        <p class="error" id="errorMsg"></p>
+        <p class="success" id="successMsg" style="display:none;">Thanks! Your message was sent. ✅</p>
+
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Memory Match Game | Contact Us</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const errorMsg = document.getElementById('errorMsg');
+    const successMsg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      errorMsg.textContent = '';
+      successMsg.style.display = 'none';
+
+      if (!name || !email || !message) {
+        errorMsg.textContent = 'Please fill out all fields.';
+        return;
+      }
+
+      if (!email.includes('@')) {
+        errorMsg.textContent = 'Please enter a valid email.';
+        return;
+      }
+
+      successMsg.style.display = 'block';
+      form.reset();
+    });
+  </script>
+</body>
+</html>

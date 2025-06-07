@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Memory Match Game - Main Feature</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Additional minimal CSS for the game cards */
+    .game-container {
+      display: grid;
+      grid-template-columns: repeat(4, 100px);
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .card {
+      width: 100px;
+      height: 100px;
+      background-color: #4CAF50;
+      border-radius: 10px;
+      font-size: 3rem;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .card.flipped {
+      background-color: #fff;
+      color: #333;
+      cursor: default;
+      transform: rotateY(180deg);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    button.button {
+      margin-bottom: 15px;
+      padding: 10px 20px;
+      font-size: 1rem;
+    }
+    @media (max-width: 500px) {
+      .game-container {
+        grid-template-columns: repeat(2, 100px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Memory Match Game</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="game.html" class="active">Game</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <button id="resetBtn" class="button">Restart Game</button>
+      <p>Flipped Cards: <span id="flippedCount">0</span></p>
+      <p>Matches Found: <span id="matchesCount">0</span></p>
+    </section>
+
+    <section class="game-container" id="gameContainer">
+      <!-- Cards will be generated here -->
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Memory Match Game
+  </footer>
+
+  <script>
+    // JavaScript code to handle the Memory Match game logic
+    const gameContainer = document.getElementById('gameContainer');
+    const flippedCountElem = document.getElementById('flippedCount');
+    const matchesCountElem = document.getElementById('matchesCount');
+    const resetBtn = document.getElementById('resetBtn');
+
+    const emojis = ['🍎', '🍌', '🍇', '🍓', '🥝', '🍍', '🍉', '🍒']; // 8 pairs
+    let deck = [];
+    let flippedCards = [];
+    let matchesFound = 0;
+    let flippedCount = 0;
+    let canClick = true;
+
+    function shuffle(array) {
+      for (let i = array.length -1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function createDeck() {
+      deck = [...emojis, ...emojis]; // duplicate pairs
+      shuffle(deck);
+    }
+
+    function createCard(emoji, index) {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.dataset.emoji = emoji;
+      card.dataset.index = index;
+      card.textContent = ''; // initially hidden
+
+      card.addEventListener('click', () => {
+        if (!canClick) return;
+        if (
+          flippedCards.length < 2 &&
+          !card.classList.contains('flipped') &&
+          !flippedCards.includes(card)
+        ) {
+          flipCard(card);
+        }
+      });
+
+      return card;
+    }
+
+    function flipCard(card) {
+      card.classList.add('flipped');
+      card.textContent = card.dataset.emoji;
+      flippedCards.push(card);
+      flippedCount++;
+      flippedCountElem.textContent = flippedCount;
+
+      if (flippedCards.length === 2) {
+        checkMatch();
+      }
+    }
+
+    function checkMatch() {
+      canClick = false; // temporarily disable clicking
+      const [card1, card2] = flippedCards;
+
+      if (card1.dataset.emoji === card2.dataset.emoji) {
+        matchesFound++;
+        matchesCountElem.textContent = matchesFound;
+        flippedCards = [];
+        canClick = true;
+        if (matchesFound === emojis.length) {
+          setTimeout(() => alert('🎉 Congratulations! You matched all cards!'), 300);
+        }
+      } else {
+        setTimeout(() => {
+          card1.classList.remove('flipped');
+          card1.textContent = '';
+          card2.classList.remove('flipped');
+          card2.textContent = '';
+          flippedCards = [];
+          canClick = true;
+        }, 1000);
+      }
+    }
+
+    function initGame() {
+      createDeck();
+      gameContainer.innerHTML = '';
+      flippedCards = [];
+      matchesFound = 0;
+      flippedCount = 0;
+      flippedCountElem.textContent = flippedCount;
+      matchesCountElem.textContent = matchesFound;
+
+      deck.forEach((emoji, index) => {
+        const card = createCard(emoji, index);
+        gameContainer.appendChild(card);
+      });
+    }
+
+    resetBtn.addEventListener('click', initGame);
+
+    // Initialize game on page load
+    initGame();
+  </script>
+</body>
+</html>

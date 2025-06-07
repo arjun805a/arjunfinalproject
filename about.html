@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - Memory Match Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>About This Game</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>What Is the Memory Match Game?</h2>
+      <p>
+        This is a simple and fun browser-based memory game. Your task is to flip two cards at a time and try to match pairs.
+      </p>
+    </section>
+
+    <section>
+      <h2>Why I Made This</h2>
+      <p>
+        I created this project for my final web development assignment. The goal was to build something interactive, responsive, and enjoyable to use—so I chose a classic card matching game.
+      </p>
+    </section>
+
+    <section>
+      <h2>How to Play</h2>
+      <ul>
+        <li>Click on any card to flip it over.</li>
+        <li>Try to find a matching emoji on another card.</li>
+        <li>Match all the pairs to win!</li>
+        <li>The fewer moves you make, the better your memory!</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Fun Fact</h2>
+      <p id="fun-fact">Can you guess how many combinations are possible with 8 pairs? <button id="reveal-btn">Reveal</button></p>
+      <p id="fact-answer" style="display:none;">There are <strong>16! / (2!^8)</strong> = 10,395,360 combinations!</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Memory Match Game | Made by Me with ❤️</p>
+  </footer>
+
+  <script>
+    document.getElementById("reveal-btn").addEventListener("click", () => {
+      const answer = document.getElementById("fact-answer");
+      answer.style.display = "block";
+    });
+  </script>
+</body>
+</html>
