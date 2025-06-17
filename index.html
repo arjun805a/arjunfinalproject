@@ -3,195 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Memory Match Game</title>
+  <title>Memory Match - Home</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* --- Hero Banner --- */
-    .hero {
-      background: url('image/hero-bg.jpg') center/cover no-repeat;
-      color: #fff;
-      text-align: center;
-      padding: 100px 20px;
-      position: relative;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.4);
-      z-index: 0;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .hero h2 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-    }
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
-
-    /* --- Button --- */
-    .button {
-      display: inline-block;
-      padding: 0.75rem 2rem;
-      background: #4CAF50;
-      color: #fff;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-    .button:hover {
-      background: #43a047;
-    }
-
-    /* --- Header & Nav --- */
-    header {
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    header .container {
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(to right, #ff6600, #ff3366, #cc33ff); /* Based on your image */
+      padding: 1rem 0;
+    }
+
+    nav {
+      display: flex;
       justify-content: space-between;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 15px;
+      align-items: center;
+      padding: 0 2rem;
     }
-    header h1 {
-      font-size: 1.8rem;
-      color: #333;
+
+    h1 {
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
     }
-    nav ul {
-      list-style: none;
+
+    .nav-links {
       display: flex;
       gap: 1rem;
     }
-    nav a {
-      color: #333;
+
+    .nav-link {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 0.5rem 1.2rem;
+      color: white;
+      border-radius: 25px;
       text-decoration: none;
-      padding: 6px 10px;
-      transition: background 0.3s, color 0.3s;
-      border-radius: 4px;
-    }
-    nav a:hover,
-    nav a.active {
-      background: #4CAF50;
-      color: #fff;
+      font-weight: bold;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* --- Main Section (for smaller screens fallback) --- */
-    main > section {
-      padding: 60px 20px;
-      text-align: center;
+    .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.4);
     }
-    main > section h2 {
+
+    .nav-link.active {
+      background-color: white;
+      color: #333;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .main-content {
+      text-align: center;
+      padding: 4rem 2rem;
+      flex-grow: 1;
+    }
+
+    .main-content h2 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
+      color: #333;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
     }
-    main > section p {
+
+    .main-content p {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto 2rem auto;
+    }
+
+    .play-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 0.75rem 1.5rem;
       font-size: 1.1rem;
-      margin-bottom: 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
-    /* --- Footer --- */
+    .play-btn:hover {
+      background-color: #45a049;
+    }
+
     footer {
-      background: #333;
-      color: #fff;
+      background-color: #000;
+      color: white;
       text-align: center;
-      padding: 20px 0;
-      margin-top: 40px;
-      font-size: 0.9rem;
+      padding: 1rem;
+      font-size: 0.95rem;
+      border-top: 1px solid #222;
     }
 
-    /* --- Utility Container --- */
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: 0 auto;
+    footer a {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-left: 5px;
     }
 
-    /* --- Responsive Nav Toggle --- */
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background: #fff;
-        position: absolute;
-        top: 100%;
-        right: 15px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      }
-      .nav-toggle {
-        display: block;
-        font-size: 1.5rem;
-        background: none;
-        border: none;
-        cursor: pointer;
-      }
-      nav.open ul {
-        display: flex;
-      }
+    footer a:hover {
+      color: #ff4081;
     }
   </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
-  <div class="container">
-    <h1>Memory Match</h1>
-    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
     <nav>
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="game.html">Game</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <h1>Memory Match</h1>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="game.html" class="nav-link">Game</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
     </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h2>Train Your Brain with Memory Match!</h2>
+    <p>Challenge yourself to find all the matching cards in as few moves as possible. Fun for all ages and a great way to sharpen your memory.</p>
+    <a href="game.html">
+      <button class="play-btn">Play Now</button>
+    </a>
   </div>
-</header>
-<script>
-  // menu toggle
-  document.querySelector('.nav-toggle').addEventListener('click', () => {
-    document.querySelector('nav').classList.toggle('open');
-  });
-</script>
-
-
-  <!-- Hero Banner -->
-  <section class="hero">
-    <div class="hero-content">
-      <h2>Train Your Brain with Memory Match!</h2>
-      <p>Challenge yourself to find all the matching cards in as few moves as possible. Fun for all ages.</p>
-      <a href="game.html" class="button">Play Now</a>
-    </div>
-  </section>
-
-  <!-- Fallback content for very small screens -->
-  <main>
-    <section>
-      <h2>Welcome to Memory Match!</h2>
-      <p>Sharpen your memory and match the cards in as few moves as possible!</p>
-      <a href="game.html" class="button">Play Now</a>
-    </section>
-  </main>
 
   <footer>
-    <p>&copy; 2025 Memory Match Game &mdash; All Rights Reserved</p>
+    &copy; 2025 Memory Match. Created by <a href="#">Arjun shahi</a>. All rights reserved.
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>

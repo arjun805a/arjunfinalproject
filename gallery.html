@@ -120,17 +120,26 @@
       padding: 0 10px;
     }
 
-    /* Optional center alignment for "Me" card */
     .centered {
       grid-column: 1 / -1;
       max-width: 250px;
-      margin: 0 auto;
+      margin: -40px auto 20px auto;
+      z-index: 1;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 0.9rem;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
- <header>
+<header>
   <div class="container">
     <h1>GAllery</h1>
     <button class="nav-toggle" aria-label="Toggle menu">☰</button>
@@ -145,6 +154,7 @@
     </nav>
   </div>
 </header>
+
 <script>
   // menu toggle
   document.querySelector('.nav-toggle').addEventListener('click', () => {
@@ -152,122 +162,120 @@
   });
 </script>
 
+<main>
+  <div class="filter-buttons">
+    <button>Fruits</button>
+  </div>
 
-  <main>
-    <div class="filter-buttons">
-      <button>Fruits</button>
+  <section class="gallery">
+
+    <!-- Fruit Cards -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/apple.png" alt="Apple">
+        </div>
+        <div class="flip-card-back">
+          <div class="card-title">Apple</div>
+          <div class="card-text">Apples are rich in fiber and antioxidants.</div>
+        </div>
+      </div>
     </div>
 
-    <section class="gallery">
-
-      <!-- Card Template -->
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="image/apple.png" alt="Apple">
-          </div>
-          <div class="flip-card-back">
-            <div class="card-title">Apple</div>
-            <div class="card-text">Apples are rich in fiber and antioxidants.</div>
-          </div>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/banana.png" alt="Banana">
+        </div>
+        <div class="flip-card-back">
+          <div class="card-title">Banana</div>
+          <div class="card-text">Bananas are a great source of potassium.</div>
         </div>
       </div>
+    </div>
 
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="image/banana.png" alt="Banana">
-          </div>
-          <div class="flip-card-back">
-            <div class="card-title">Banana</div>
-            <div class="card-text">Bananas are a great source of potassium.</div>
-          </div>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/grape.png" alt="Grape">
+        </div>
+        <div class="flip-card-back">
+          <div class="card-title">Grape</div>
+          <div class="card-text">Grapes contain antioxidants called polyphenols.</div>
         </div>
       </div>
+    </div>
 
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="image/grape.png"alt="Grape">
-          </div>
-          <div class="flip-card-back">
-            <div class="card-title">Grape</div>
-            <div class="card-text">Grapes contain antioxidants called polyphenols.</div>
-          </div>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/kiwi.png" alt="KIWI">
+        </div>
+        <div class="flip-card-back">
+          <div class="card-title">Orange</div>
+          <div class="card-text">Oranges are famous for their vitamin C content.</div>
         </div>
       </div>
+    </div>
 
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="image/kiwi.png" alt="KIWI">
-          </div>
-          <div class="flip-card-back">
-            <div class="card-title">Orange</div>
-            <div class="card-text">Oranges are famous for their vitamin C content.</div>
-          </div>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/watermelon.png" alt="Watermelon">
+        </div>
+        <div class="flip-card-back">
+          <div class="card-title">Watermelon</div>
+          <div class="card-text">Watermelons are 92% water — super refreshing!</div>
         </div>
       </div>
+    </div>
 
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="image/watermelon.png" alt="Watermelon">
-          </div>
-          <div class="flip-card-back">
-            <div class="card-title">Watermelon</div>
-            <div class="card-text">Watermelons are 92% water — super refreshing!</div>
-          </div>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/ChatGPT Image Jun 15, 2025, 03_59_49 PM.png" alt="Pineapple">
+        </div>
+        <div class="flip-card-back">
+          <div class="card-title">Pineapple</div>
+          <div class="card-text">Pineapples have an enzyme that helps digestion.</div>
         </div>
       </div>
+    </div>
 
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="image/ChatGPT Image Jun 15, 2025, 03_59_49 PM.png" alt="Pineapple">
-          </div>
-          <div class="flip-card-back">
-            <div class="card-title">Pineapple</div>
-            <div class="card-text">Pineapples have an enzyme that helps digestion.</div>
-          </div>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/strawberry.png" alt="Strawberry">
+        </div>
+        <div class="flip-card-back">
+          <div class="card-title">Strawberry</div>
+          <div class="card-text">Strawberries are rich in vitamin C.</div>
         </div>
       </div>
+    </div>
 
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="image/strawberry.png" alt="Strawberry">
-          </div>
-          <div class="flip-card-back">
-            <div class="card-title">Strawberry</div>
-            <div class="card-text">Strawberries are rich in vitamin C.</div>
-          </div>
+    <!-- Developer Card -->
+    <div class="flip-card centered">
+      <div class="filter-buttons">
+        <button>DEVELOPER</button>
+      </div>
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/me.jpg" alt="Me">
+        </div>
+        <div class="flip-card-back">
+          <div class="card-title">Me</div>
+          <div class="card-text">DEVELOPER OF THIS WEBSITE</div>
         </div>
       </div>
-     
+    </div>
 
-      <!-- Your Photo Card Centered -->
-      <div class="flip-card centered">
-         <div class="filter-buttons">
-          <button>DEVELOPER</button>
-      </div>
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="image/me.jpg" alt="Me">
-          </div>
-          <div class="flip-card-back">
-            <div class="card-title">Me</div>
-            <div class="card-text">DEVELOPER OF THIS WEBSITE</div>
-          </div>
-        </div>
-      </div>
+  </section>
+</main>
 
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2025 Memory Match Game
-  </footer>
+<footer>
+  <p>&copy; 2025 Your Name. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
